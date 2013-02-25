@@ -6,7 +6,6 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -14,22 +13,26 @@ import android.widget.ListView;
 
 import com.best.phonemanager.adapters.MainListAdapter;
 import com.best.phonemanager.entity.MainListItem;
+import com.best.phonemanager.util.CpuManager;
 
-public class MainActivity extends Activity implements OnItemClickListener{
+/**
+ * @author ZhangShuaiQi
+ * @date 2013-2-21 下午5:32:57
+ */
+public class AccelerateActivity extends Activity implements OnItemClickListener{
 
 	MainListAdapter adapter;
 	ListView listview;
 	List<MainListItem> list;
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_accelerate);
 		listview = (ListView) findViewById(R.id.list1);
-		MainListItem item1 = new MainListItem("流量监控", "今日1.5M,未设置包月", R.drawable.home_network);
-		MainListItem item2 = new MainListItem("骚扰拦截", "本月拦截信息3,电话0", R.drawable.home_filter);
-		MainListItem item3 = new MainListItem("手机加速", "内存已用65%", R.drawable.home_accelerate);
+		MainListItem item1 = new MainListItem("结束进程", "内存已用70%", R.drawable.main_icon_task);
+		MainListItem item2 = new MainListItem("开机加速", "有12个开机启动软件,10个建议禁止", R.drawable.main_icon_task_accelerate);
+		MainListItem item3 = new MainListItem("缓存清理", "定期清理,释放手机空间", R.drawable.main_icon_cache);
 		list = new ArrayList<MainListItem>();
 		list.add(item1);
 		list.add(item2);
@@ -37,13 +40,13 @@ public class MainActivity extends Activity implements OnItemClickListener{
 		adapter = new MainListAdapter(list, this);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(this);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		
+		CpuManager manager = new CpuManager(this);
+		System.out.println(String.format("当前cpu:%s", manager.getCurCpuFreq()));
+		System.out.println(String.format("总cpu:%s", manager.getMaxCpuFreq()));
+		System.out.println(String.format("总Ram:%s", manager.getTotalMemory()));
+		System.out.println(String.format("剩余Ram:%s", manager.getAvailMemory()));
+		
 	}
 
 	@Override
@@ -51,17 +54,16 @@ public class MainActivity extends Activity implements OnItemClickListener{
 		Intent intent = null;
 		switch (arg2) {
 		case 0:
-			
+			intent = new Intent(this, TaskActivity.class);
+			startActivity(intent);
 			break;
 		case 1:
 			
 			break;
 		case 2:
-			intent = new Intent(this, AccelerateActivity.class);
-			startActivity(intent);
+			
 			break;
 		}
-		
 	}
 
 }

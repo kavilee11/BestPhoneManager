@@ -15,7 +15,6 @@ import com.best.phonemanager.util.AppUtil;
 
 /**
  * @author ZhangShuaiQi
- * @date 2013-2-22 下午2:29:24
  */
 public class TaskActivity extends Activity {
 

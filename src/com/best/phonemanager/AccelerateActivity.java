@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.best.phonemanager.adapters.MainListAdapter;
 import com.best.phonemanager.entity.MainListItem;
@@ -24,13 +25,22 @@ public class AccelerateActivity extends Activity implements OnItemClickListener{
 	MainListAdapter adapter;
 	ListView listview;
 	List<MainListItem> list;
+	TextView tv_ram;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accelerate);
 		listview = (ListView) findViewById(R.id.list1);
-		MainListItem item1 = new MainListItem("结束进程", "内存已用70%", R.drawable.main_icon_task);
+		tv_ram = (TextView) findViewById(R.id.tv_ram);
+		CpuManager manager = new CpuManager(this);
+		double shengyu = manager.getAvailMemory() / 1E8;
+		double total = manager.getTotalMemory() / 1E8;
+		double yiyong = total-shengyu;
+		double p = yiyong/total;
+		int yiyongStr = (int) (p * 100);
+		tv_ram.setText(String.format("内存：%s", yiyongStr+"%"));
+		MainListItem item1 = new MainListItem("结束进程", "内存已用"+yiyongStr+"%", R.drawable.main_icon_task);
 		MainListItem item2 = new MainListItem("开机加速", "有12个开机启动软件,10个建议禁止", R.drawable.main_icon_task_accelerate);
 		MainListItem item3 = new MainListItem("缓存清理", "定期清理,释放手机空间", R.drawable.main_icon_cache);
 		list = new ArrayList<MainListItem>();
@@ -41,9 +51,7 @@ public class AccelerateActivity extends Activity implements OnItemClickListener{
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(this);
 		
-		CpuManager manager = new CpuManager(this);
-		System.out.println(String.format("当前cpu:%s", manager.getCurCpuFreq()));
-		System.out.println(String.format("总cpu:%s", manager.getMaxCpuFreq()));
+		
 		System.out.println(String.format("总Ram:%s", manager.getTotalMemory()));
 		System.out.println(String.format("剩余Ram:%s", manager.getAvailMemory()));
 		

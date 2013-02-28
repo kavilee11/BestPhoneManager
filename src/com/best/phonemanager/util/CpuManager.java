@@ -23,6 +23,7 @@ public class CpuManager {
 	String TAG = "CpuManager";
 	Context mContext;
 	
+	
 	public CpuManager(Context mContext) {
 		super();
 		this.mContext = mContext;

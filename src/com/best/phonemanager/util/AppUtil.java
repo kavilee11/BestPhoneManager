@@ -1,12 +1,15 @@
 package com.best.phonemanager.util;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageStats;
 import android.os.Debug;
 
 import com.best.phonemanager.entity.ProcessInfo;
@@ -51,49 +54,84 @@ public class AppUtil {
 			// 获取进程占内存用信息 kb单位
 			int memSize = memoryInfo[0].dalvikPrivateDirty;
 
-			if(appProcessInfo.processName.equals("system") || appProcessInfo.processName.equals("com.android.systemui")){  
-                continue;  
-            }
+			if (appProcessInfo.processName.equals("system")
+					|| appProcessInfo.processName
+							.equals("com.android.systemui")) {
+				continue;
+			}
 			PackageUtil packageUtil = new PackageUtil(context);
-			PackageInfo tempAppInfo = packageUtil.getApplicationInfo(appProcessInfo.processName);
-			if(tempAppInfo != null){
+			PackageInfo tempAppInfo = packageUtil
+					.getApplicationInfo(appProcessInfo.processName);
+			if (tempAppInfo != null) {
 				// 构造一个ProcessInfo对象
 				ProcessInfo processInfo = new ProcessInfo();
 				processInfo.setPid(pid);
 				processInfo.setUid(uid);
 				processInfo.setMemorySize(memSize);
 				processInfo.setPackageName(appProcessInfo.processName);
-				processInfo.setName(packageUtil.getApplicationInfo(processName).applicationInfo.loadLabel(context.getApplicationContext().getPackageManager()) + "");
-				processInfo.setIcon(packageUtil.getApplicationInfo(processName).applicationInfo.loadIcon(context.getApplicationContext().getPackageManager()));
+				processInfo
+						.setName(packageUtil.getApplicationInfo(processName).applicationInfo
+								.loadLabel(context.getApplicationContext()
+										.getPackageManager())
+								+ "");
+				processInfo
+						.setIcon(packageUtil.getApplicationInfo(processName).applicationInfo
+								.loadIcon(context.getApplicationContext()
+										.getPackageManager()));
 				processInfoList.add(processInfo);
 			}
 		}
 		return processInfoList;
 	}
-	
-	public class PackageUtil
-	{
-	    // ApplicationInfo 类，保存了普通应用程序的信息，主要是指Manifest.xml中application标签中的信息
-	    private List<PackageInfo> allAppList;
-	   
-	    public PackageUtil(Context context) {
-	        // 通过包管理器，检索所有的应用程序（包括卸载）与数据目录
-	        PackageManager pm = context.getApplicationContext().getPackageManager();
-	        allAppList = pm.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
-	    }
-	   
-	   
-	    public PackageInfo getApplicationInfo(String appName) {
-	        if (appName == null) {
-	            return null;
-	        }
-	        for (PackageInfo appinfo : allAppList) {
-	            if (appName.equals(appinfo.applicationInfo.processName)) {
-	                return appinfo;
-	            }
-	        }
-	        return null;
-	    }
+
+	public class PackageUtil {
+		// ApplicationInfo 类，保存了普通应用程序的信息，主要是指Manifest.xml中application标签中的信息
+		private List<PackageInfo> allAppList;
+
+		public PackageUtil(Context context) {
+			// 通过包管理器，检索所有的应用程序（包括卸载）与数据目录
+			PackageManager pm = context.getApplicationContext()
+					.getPackageManager();
+			allAppList = pm
+					.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
+		}
+
+		public PackageInfo getApplicationInfo(String appName) {
+			if (appName == null) {
+				return null;
+			}
+			for (PackageInfo appinfo : allAppList) {
+				if (appName.equals(appinfo.applicationInfo.processName)) {
+					return appinfo;
+				}
+			}
+			return null;
+		}
+	}
+
+	// 获取应用程序信息
+	public void getpkginfo(String pkg) {
+		PackageManager pm = context.getPackageManager();
+		try {
+			Method getPackageSizeInfo = pm.getClass().getMethod(
+					"getPackageSizeInfo", String.class,
+					IPackageStatsObserver.class);
+			getPackageSizeInfo.invoke(pm, pkg, new PkgSizeObserver());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	class PkgSizeObserver extends IPackageStatsObserver.Stub {
+		public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) {
+			System.out.println("应用程序大小: " + pStats.codeSize);
+//			Message msg = mHandler.obtainMessage(1);
+//            Bundle data = new Bundle();
+//            data.putParcelable(ATTR_PACKAGE_STATS, pStats);
+//            msg.setData(data);
+//            mHandler.sendMessage(msg);
+
+		}
 	}
 
 }

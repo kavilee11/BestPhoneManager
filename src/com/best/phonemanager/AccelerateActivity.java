@@ -60,7 +60,8 @@ public class AccelerateActivity extends Activity implements OnItemClickListener{
 			
 			break;
 		case 2:
-			
+			intent = new Intent(this, ClearCacheActivity.class);
+			startActivity(intent);
 			break;
 		}
 	}

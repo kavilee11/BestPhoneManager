@@ -29,100 +29,19 @@ public class CpuManager {
 		this.mContext = mContext;
 	}
 
-	// 获取CPU最大频率（单位KHZ）
-	// "/system/bin/cat" 命令行
-	// "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq" 存储最大频率的文件的路径
-	public static String getMaxCpuFreq() {
-		String result = "";
-		ProcessBuilder cmd;
-		try {
-			String[] args = { "/system/bin/cat",
-					"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq" };
-			cmd = new ProcessBuilder(args);
-			Process process = cmd.start();
-			InputStream in = process.getInputStream();
-			byte[] re = new byte[24];
-			while (in.read(re) != -1) {
-				result = result + new String(re);
-			}
-			in.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			result = "N/A";
-		}
-		return result.trim();
-	}
-
-	// 获取CPU最小频率（单位KHZ）
-	public static String getMinCpuFreq() {
-		String result = "";
-		ProcessBuilder cmd;
-		try {
-			String[] args = { "/system/bin/cat",
-					"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq" };
-			cmd = new ProcessBuilder(args);
-			Process process = cmd.start();
-			InputStream in = process.getInputStream();
-			byte[] re = new byte[24];
-			while (in.read(re) != -1) {
-				result = result + new String(re);
-			}
-			in.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			result = "N/A";
-		}
-		return result.trim();
-	}
-
-	// 实时获取CPU当前频率（单位KHZ）
-	public static String getCurCpuFreq() {
-		String result = "N/A";
-		try {
-			FileReader fr = new FileReader(
-					"/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
-			BufferedReader br = new BufferedReader(fr);
-			String text = br.readLine();
-			result = text.trim();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	// 获取CPU名字
-	public static String getCpuName() {
-		try {
-			FileReader fr = new FileReader("/proc/cpuinfo");
-			BufferedReader br = new BufferedReader(fr);
-			String text = br.readLine();
-			String[] array = text.split(":\\s+", 2);
-			for (int i = 0; i < array.length; i++) {
-			}
-			return array[1];
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	// 内存
 
-	public String getAvailMemory() {// 获取android当前可用内存大小  
+	public long getAvailMemory() {// 获取android当前可用内存大小  
 		  
         ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);  
         MemoryInfo mi = new MemoryInfo();  
         am.getMemoryInfo(mi);  
         //mi.availMem; 当前系统的可用内存  
-  
-        return Formatter.formatFileSize(mContext, mi.availMem);// 将获取的内存大小规格化  
+        return mi.availMem;
+//        return Formatter.formatFileSize(mContext, mi.availMem);// 将获取的内存大小规格化  
     }  
   
-	public String getTotalMemory() {  
+	public long getTotalMemory() {  
         String str1 = "/proc/meminfo";// 系统内存信息文件  
         String str2;  
         String[] arrayOfString;  
@@ -141,10 +60,12 @@ public class CpuManager {
   
             initial_memory = Integer.valueOf(arrayOfString[arrayOfString.length-2]).intValue() * 1024;// 获得系统总内存，单位是KB，乘以1024转换为Byte  
             localBufferedReader.close();  
+            return initial_memory;
   
         } catch (IOException e) {  
+        	return 0;
         }  
-        return Formatter.formatFileSize(mContext, initial_memory);// Byte转换为KB或者MB，内存大小规格化  
+//        return Formatter.formatFileSize(mContext, initial_memory);// Byte转换为KB或者MB，内存大小规格化  
     }  
 	
 	// 3、Rom大小

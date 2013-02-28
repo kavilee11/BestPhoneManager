@@ -68,6 +68,19 @@ public class CpuManager {
 //        return Formatter.formatFileSize(mContext, initial_memory);// Byte转换为KB或者MB，内存大小规格化  
     }  
 	
+	/**
+	 * 获取已用内存的百分比
+	 * @return
+	 */
+	public int getPercentageUsedRam(){
+		double shengyu = getAvailMemory() / 1E8;
+		double total = getTotalMemory() / 1E8;
+		double yiyong = total-shengyu;
+		double p = yiyong/total;
+		int yiyongStr = (int) (p * 100);
+		return yiyongStr;
+	}
+	
 	// 3、Rom大小
 
 	public long[] getRomMemroy() {

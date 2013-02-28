@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="当前运行5个进程" />
+            android:text="当前运行X个进程" />
 
         <TextView
             android:id="@+id/tv2"
@@ -23,12 +23,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="剩余可用内存374.7M" />
+            android:text="剩余可用内存xxxM" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/list1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+         />
+    <Button 
+        android:id="@+id/button_kill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="结束程序"
+        android:onClick="kill"
+        />
 
 </LinearLayout>

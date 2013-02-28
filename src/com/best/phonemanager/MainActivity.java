@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.best.phonemanager.adapters.MainListAdapter;
 import com.best.phonemanager.entity.MainListItem;
+import com.best.phonemanager.util.CpuManager;
 
 public class MainActivity extends Activity implements OnItemClickListener{
 
@@ -27,9 +28,11 @@ public class MainActivity extends Activity implements OnItemClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		listview = (ListView) findViewById(R.id.list1);
+		CpuManager manager = new CpuManager(this);
+		int yiyong = manager.getPercentageUsedRam();
 		MainListItem item1 = new MainListItem("流量监控", "今日1.5M,未设置包月", R.drawable.home_network);
 		MainListItem item2 = new MainListItem("骚扰拦截", "本月拦截信息3,电话0", R.drawable.home_filter);
-		MainListItem item3 = new MainListItem("手机加速", "内存已用65%", R.drawable.home_accelerate);
+		MainListItem item3 = new MainListItem("手机加速", "内存已用"+yiyong+"%", R.drawable.home_accelerate);
 		list = new ArrayList<MainListItem>();
 		list.add(item1);
 		list.add(item2);

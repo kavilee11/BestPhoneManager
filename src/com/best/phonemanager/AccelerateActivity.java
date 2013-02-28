@@ -34,13 +34,9 @@ public class AccelerateActivity extends Activity implements OnItemClickListener{
 		listview = (ListView) findViewById(R.id.list1);
 		tv_ram = (TextView) findViewById(R.id.tv_ram);
 		CpuManager manager = new CpuManager(this);
-		double shengyu = manager.getAvailMemory() / 1E8;
-		double total = manager.getTotalMemory() / 1E8;
-		double yiyong = total-shengyu;
-		double p = yiyong/total;
-		int yiyongStr = (int) (p * 100);
-		tv_ram.setText(String.format("内存：%s", yiyongStr+"%"));
-		MainListItem item1 = new MainListItem("结束进程", "内存已用"+yiyongStr+"%", R.drawable.main_icon_task);
+		int yiyong = manager.getPercentageUsedRam();
+		tv_ram.setText(String.format("内存：%s", yiyong+"%"));
+		MainListItem item1 = new MainListItem("结束进程", "内存已用"+yiyong+"%", R.drawable.main_icon_task);
 		MainListItem item2 = new MainListItem("开机加速", "有12个开机启动软件,10个建议禁止", R.drawable.main_icon_task_accelerate);
 		MainListItem item3 = new MainListItem("缓存清理", "定期清理,释放手机空间", R.drawable.main_icon_cache);
 		list = new ArrayList<MainListItem>();
@@ -50,11 +46,6 @@ public class AccelerateActivity extends Activity implements OnItemClickListener{
 		adapter = new MainListAdapter(list, this);
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(this);
-		
-		
-		System.out.println(String.format("总Ram:%s", manager.getTotalMemory()));
-		System.out.println(String.format("剩余Ram:%s", manager.getAvailMemory()));
-		
 	}
 
 	@Override

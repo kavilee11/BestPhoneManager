@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:background="@drawable/bv_selector_list_item_bg"
+    >
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:src="@drawable/home_network"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="8dp"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="百度地图"
+            android:textColor="@android:color/black"
+            />
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/clear"
+        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_list_item_bg_clear_cache"
+        android:background="@android:color/transparent"
+        />
+    
+
+</LinearLayout>

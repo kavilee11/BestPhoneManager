@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 
 import com.best.phonemanager.adapters.MainListAdapter;
 import com.best.phonemanager.entity.MainListItem;
+import com.best.phonemanager.receiver.InterceptSmsReceiver;
 import com.best.phonemanager.util.CpuManager;
 
 public class MainActivity extends Activity implements OnItemClickListener{
@@ -53,12 +55,15 @@ public class MainActivity extends Activity implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent = null;
 		switch (arg2) {
+		//流量监控
 		case 0:
 			
 			break;
+		//骚扰拦截
 		case 1:
 			
 			break;
+		//手机加速
 		case 2:
 			intent = new Intent(this, AccelerateActivity.class);
 			startActivity(intent);

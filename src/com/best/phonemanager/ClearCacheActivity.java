@@ -130,6 +130,20 @@ public class ClearCacheActivity extends Activity{
 	}
 	
 	public void clearAll(View view){
-		
+		PackageManager  pm = getPackageManager();
+		// Get all methods on the PackageManager
+		Method[] methods = pm.getClass().getDeclaredMethods();
+		for (Method m : methods) {
+		    if (m.getName().equals("freeStorage")) {
+		        // Found the method I want to use
+		        try {
+		            long desiredFreeStorage = 8 * 1024 * 1024 * 1024; // Request for 8GB of free space
+		            m.invoke(pm, desiredFreeStorage , null);
+		        } catch (Exception e) {
+		            // Method invocation failed. Could be a permission problem
+		        }
+		        break;
+		    }
+		}
 	}
 }

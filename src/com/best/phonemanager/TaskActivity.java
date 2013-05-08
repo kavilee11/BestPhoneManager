@@ -21,7 +21,7 @@ import com.best.phonemanager.util.AppUtil;
 /**
  * @author ZhangShuaiQi
  */
-public class TaskActivity extends Activity {
+public class TaskActivity extends BaseActivity {
 
 	public static final int MSG_WHAT_REFRESH_KILL_BUTTON = 100;
 	

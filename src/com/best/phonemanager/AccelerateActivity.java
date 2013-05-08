@@ -20,7 +20,7 @@ import com.best.phonemanager.util.CpuManager;
  * @author ZhangShuaiQi
  * @date 2013-2-21 下午5:32:57
  */
-public class AccelerateActivity extends Activity implements OnItemClickListener{
+public class AccelerateActivity extends BaseActivity implements OnItemClickListener{
 
 	MainListAdapter adapter;
 	ListView listview;

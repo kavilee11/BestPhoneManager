@@ -10,12 +10,16 @@ import android.view.View.OnClickListener;
  * @author zhangshuaiqi
  * @date 2013-3-1 下午2:56:48
  */
-public class InterceptActivity extends Activity implements OnClickListener{
+public class InterceptActivity extends BaseActivity implements OnClickListener{
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intercept);
+		findViewById(R.id.sms).setOnClickListener(this);
+		findViewById(R.id.call).setOnClickListener(this);
 	}
 
 	@Override

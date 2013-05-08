@@ -26,7 +26,7 @@ import com.best.phonemanager.entity.CacheInfo;
  * @author fanshuo
  * @date 2013-2-28 下午2:24:50
  */
-public class ClearCacheActivity extends Activity{
+public class ClearCacheActivity extends BaseActivity{
 
 	public static final int MSG_WHAT_REFRESH_TEXT = 200;
 	

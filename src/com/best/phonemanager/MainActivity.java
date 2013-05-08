@@ -61,7 +61,8 @@ public class MainActivity extends Activity implements OnItemClickListener{
 			break;
 		//骚扰拦截
 		case 1:
-			
+			intent = new Intent(this, InterceptActivity.class);
+			startActivity(intent);
 			break;
 		//手机加速
 		case 2:

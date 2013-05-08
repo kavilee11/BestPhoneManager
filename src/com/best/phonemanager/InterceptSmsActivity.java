@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
  * @author zhangshuaiqi
  * @date 2013-3-1 下午2:56:48
  */
-public class InterceptSmsActivity extends Activity{
+public class InterceptSmsActivity extends BaseActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

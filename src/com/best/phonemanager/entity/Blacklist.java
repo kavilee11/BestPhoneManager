@@ -14,7 +14,7 @@ public class Blacklist {
 	public static final String FIELD_NAME_DATE = "date";
 	public static final String FIELD_NAME_NUM = "number";
 
-	@DatabaseField(columnName = FIELD_NAME_ID)
+	@DatabaseField(columnName = FIELD_NAME_ID, generatedId=true)
 	private int id;
 	@DatabaseField(columnName = FIELD_NAME_DATE)
 	private Long date;

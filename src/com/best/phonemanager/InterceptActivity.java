@@ -1,6 +1,5 @@
 package com.best.phonemanager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +19,7 @@ public class InterceptActivity extends BaseActivity implements OnClickListener{
 		setContentView(R.layout.activity_intercept);
 		findViewById(R.id.sms).setOnClickListener(this);
 		findViewById(R.id.call).setOnClickListener(this);
+		findViewById(R.id.blacklist).setOnClickListener(this);
 	}
 
 	@Override
@@ -31,6 +31,9 @@ public class InterceptActivity extends BaseActivity implements OnClickListener{
 			break;
 		case R.id.call:
 			intent.setClass(this, InterceptCallActivity.class);
+			break;
+		case R.id.blacklist:
+			intent.setClass(this, BlackListActivity.class);
 			break;
 		}
 		startActivity(intent);

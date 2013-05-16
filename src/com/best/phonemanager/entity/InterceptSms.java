@@ -15,7 +15,7 @@ public class InterceptSms {
 	public static final String FIELD_NAME_PHONE_NUM = "phoneNum";
 	public static final String FIELD_NAME_BODY = "body";
 	
-	@DatabaseField(columnName=FIELD_NAME_ID)
+	@DatabaseField(columnName=FIELD_NAME_ID, generatedId=true)
 	private int id;
 	@DatabaseField(columnName=FIELD_NAME_DATE)
 	private Long date;

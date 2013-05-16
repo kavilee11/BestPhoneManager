@@ -44,6 +44,7 @@
         <activity android:name="InterceptActivity" />
         <activity android:name="InterceptCallActivity" />
         <activity android:name="InterceptSmsActivity" />
+        <activity android:name="BlackListActivity" />
 
         <receiver android:name="com.best.phonemanager.receiver.InterceptSmsReceiver" >
             <intent-filter android:priority="1000" >

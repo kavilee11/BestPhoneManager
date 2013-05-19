@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#8000" >
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="250dip"
+        android:background="#7000" 
+       	android:isScrollContainer="true"
+        
+        >
+
+        <TextView
+            android:id="@+id/dialogTextView"
+            android:layout_width="250dip"
+            android:layout_height="wrap_content"
+            android:autoLink="email"
+            android:background="#0000"
+            android:padding="10dip"
+            android:textColor="#ffff"
+            android:textSize="16dip" >
+        </TextView>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/dialogButton"
+        android:layout_width="250dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:text="@string/confirm" >
+    </Button>
+
+</RelativeLayout>

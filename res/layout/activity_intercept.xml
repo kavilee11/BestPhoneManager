@@ -39,7 +39,17 @@
         android:id="@+id/blacklist"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="查看黑名单"
+        android:text="编辑黑名单"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:background="@drawable/bv_selector_list_item_bg"
+        />
+    
+    <Button 
+        android:id="@+id/open"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="开启拦截的按钮"
         android:textSize="20sp"
         android:padding="8dp"
         android:background="@drawable/bv_selector_list_item_bg"

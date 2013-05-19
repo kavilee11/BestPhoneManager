@@ -11,19 +11,19 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.best.phonemanager.R;
-import com.best.phonemanager.entity.InterceptSms;
+import com.best.phonemanager.entity.InterceptCall;
 import com.best.phonemanager.util.DateUtils;
 
 /**
  * @author zhangshuaiqi
  * @date 2013-5-15 下午9:21:17
  */
-public class SmsAdapter extends BaseAdapter {
+public class CallAdapter extends BaseAdapter {
 
 	Context context;
-	List<InterceptSms> list;
+	List<InterceptCall> list;
 
-	public SmsAdapter(Context context, List<InterceptSms> list) {
+	public CallAdapter(Context context, List<InterceptCall> list) {
 		super();
 		this.context = context;
 		this.list = list;
@@ -35,7 +35,7 @@ public class SmsAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public InterceptSms getItem(int position) {
+	public InterceptCall getItem(int position) {
 		return list.get(position);
 	}
 
@@ -47,14 +47,12 @@ public class SmsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		convertView = LayoutInflater.from(context).inflate(
-				R.layout.adapter_intercept_sms, null);
+				R.layout.adapter_intercept_call, null);
 		TextView date = (TextView) convertView.findViewById(R.id.date);
 		TextView phone = (TextView) convertView.findViewById(R.id.phone);
-		TextView body = (TextView) convertView.findViewById(R.id.body);
-		InterceptSms sms = getItem(position);
-		date.setText(DateUtils.formatDate(new Date(sms.getDate())));
-		phone.setText(sms.getPhoneNum());
-		body.setText(sms.getBody());
+		InterceptCall call = getItem(position);
+		date.setText(DateUtils.formatDate(new Date(call.getDate())));
+		phone.setText(call.getPhoneNum());
 		return convertView;
 	}
 

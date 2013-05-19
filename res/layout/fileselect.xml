@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@layout/dialog"
+    android:layout_width="250dip"
+    android:layout_height="380dip"
+    android:background="#cccccc"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/mPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:textColor="#0000FF"
+        android:textSize="18sp" >
+    </TextView>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:textColor="#0000bb"
+        android:textSize="12sp" 
+        android:text="@string/img_info"
+        />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="265dip" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="horizontal" 
+        android:paddingTop="5dip">
+
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:layout_width="125dip"
+            android:layout_height="fill_parent"
+            android:text="@string/confirm" />
+
+        <Button
+            android:id="@+id/buttonCancle"
+            android:layout_width="125dip"
+            android:layout_height="fill_parent"
+            android:text="@string/cancel" />
+    </LinearLayout>
+
+</LinearLayout>

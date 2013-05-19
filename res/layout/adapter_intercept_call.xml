@@ -2,30 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
+    android:orientation="horizontal" 
     android:padding="8dp"
     >
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2012-05-13" 
-        android:textColor="@android:color/darker_gray"
-        />
+        android:text="2012-05-13" />
 
     <TextView
         android:id="@+id/phone"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="15633334444" 
-        android:textStyle="bold"
+        android:gravity="center_horizontal"
         />
-
-    <TextView
-        android:id="@+id/body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="bodybodybodybodyboddybodybodybodybodybody" />
-
 </LinearLayout>

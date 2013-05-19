@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 import com.best.phonemanager.entity.Blacklist;
 import com.best.phonemanager.entity.InterceptSms;
 import com.best.phonemanager.sqlite.dao.BlackListDao;
 import com.best.phonemanager.sqlite.dao.InterceptSmsDao;
+import com.best.phonemanager.util.ActivityUtils;
 
 /**
  * @author zhangshuaiqi
@@ -57,6 +59,7 @@ public class InterceptSmsReceiver extends BroadcastReceiver {
 			}
 			// 第三步:取消并添加到自己的数据库
 			if (flags_filter) {
+				ActivityUtils.showCenterToast(context, "拦截到短信：" + number + "-" + smsBody, Toast.LENGTH_SHORT);
 				InterceptSms sms = new InterceptSms();
 				sms.setDate(System.currentTimeMillis());
 				sms.setPhoneNum(smsNumber);

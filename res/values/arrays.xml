@@ -1,0 +1,76 @@
+<resources>
+
+    <string-array name="text_size">
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+    <string-array name="text_size_value">
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+    <string-array name="text_color">
+        <item>白色</item>
+        <item>黑色</item>
+        <item>蓝色</item>
+        <item>绿色</item>
+        <item>红色</item>
+        <item>黄色</item>
+        <item>蓝绿</item>
+        <item>灰色</item>
+        <item>紫色</item>
+    </string-array>
+    <string-array name="text_color_value">
+        <item>WHITE</item>
+        <item>BLACK</item>
+        <item>BLUE</item>
+        <item>GREEN</item>
+        <item>RED</item>
+        <item>YELLOW</item>
+        <item>CYAN</item>
+        <item>GRAY</item>
+        <item>MAGENTA</item>
+    </string-array>
+    <string-array name="view_bg">
+        <item>透明</item>
+        <item>纯白</item>
+        <item>米黄</item>
+        <item>酷黑</item>
+        <item>紫色</item>
+        <item>苹果绿</item>
+        <item >自定义</item>
+    </string-array>
+    <string-array name="view_bg_value">
+        <item>bg</item>
+        <item>white</item>
+        <item>yellow</item>
+        <item>black</item>
+        <item>pink</item>
+        <item>green</item>
+        <item >other</item>
+    </string-array>
+    <string-array name="view_mode">
+        <item >总网速</item>
+        <item >下载l上传网速</item>
+        <item >上传l下载网速</item>
+    </string-array>
+    <string-array name="view_mode_value">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+    </string-array>
+
+</resources>

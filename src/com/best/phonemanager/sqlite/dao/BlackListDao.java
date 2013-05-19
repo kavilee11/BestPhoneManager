@@ -56,6 +56,14 @@ public class BlackListDao {
 		}
 		return list;
 	}
+	
+	public void deleteOne(Blacklist item){
+		try {
+			dao.delete(item);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 插入一个

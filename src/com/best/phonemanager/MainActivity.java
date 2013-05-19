@@ -5,17 +5,18 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.best.phonemanager.adapters.MainListAdapter;
 import com.best.phonemanager.entity.MainListItem;
-import com.best.phonemanager.receiver.InterceptSmsReceiver;
+import com.best.phonemanager.nettraffic.UserSetting;
 import com.best.phonemanager.util.CpuManager;
 
 public class MainActivity extends Activity implements OnItemClickListener{
@@ -57,7 +58,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
 		switch (arg2) {
 		//流量监控
 		case 0:
-			
+			startActivity(new Intent(this, UserSetting.class));
 			break;
 		//骚扰拦截
 		case 1:
@@ -70,7 +71,28 @@ public class MainActivity extends Activity implements OnItemClickListener{
 			startActivity(intent);
 			break;
 		}
-		
+	}
+	
+	private long exitTime = 0;// 记录按下时间
+
+	/**
+	 * 按两次退出
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(this, R.string.press_again_exit,
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

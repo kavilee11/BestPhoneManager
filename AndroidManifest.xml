@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,6 +23,10 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 悬浮窗权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 开机启动权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -46,16 +50,49 @@
         <activity android:name="InterceptSmsActivity" />
         <activity android:name="BlackListActivity" />
 
-        <receiver android:name="com.best.phonemanager.receiver.InterceptSmsReceiver" >
-            <intent-filter android:priority="1000" >
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+        <service
+            android:name="com.best.phonemanager.services.InterceptService"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.homer.service.musicService" />
             </intent-filter>
-        </receiver>
+        </service>
+
+<!--         <receiver android:name="com.best.phonemanager.receiver.InterceptSmsReceiver" > -->
+<!--             <intent-filter android:priority="1000" > -->
+<!--                 <action android:name="android.provider.Telephony.SMS_RECEIVED" /> -->
+<!--             </intent-filter> -->
+<!--         </receiver> -->
+        <!--
         <receiver android:name="com.best.phonemanager.receiver.InterceptCallReceiver" >
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.PHONE_STATE" />
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        -->
+
+
+        <!-- 网速监测 -->
+
+        <activity
+            android:name=".nettraffic.UserSetting"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".nettraffic.MyFileManager"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <service
+            android:name=".nettraffic.ViewService"
+            android:process=":ts" />
+
+        <receiver android:name=".nettraffic.BootBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </receiver>
     </application>

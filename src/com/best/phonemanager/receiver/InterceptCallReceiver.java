@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.internal.telephony.ITelephony;
 import com.best.phonemanager.entity.Blacklist;
 import com.best.phonemanager.entity.InterceptCall;
 import com.best.phonemanager.sqlite.dao.BlackListDao;
 import com.best.phonemanager.sqlite.dao.InterceptCallDao;
+import com.best.phonemanager.util.ActivityUtils;
 
 /**
  * @author zhangshuaiqi
@@ -75,6 +77,7 @@ public class InterceptCallReceiver extends BroadcastReceiver {
 					try {
 						// 挂断电话
 						mITelephony.endCall();
+						ActivityUtils.showCenterToast(context, "拦截到电话：" + number, Toast.LENGTH_SHORT);
 						Log.e(TAG, "挂断电话");
 					} catch (Exception e) {
 						e.printStackTrace();
